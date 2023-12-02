@@ -1,0 +1,10 @@
+.Pokemon {
+	display: flex;
+	flex-direction: column;
+
+	.nombre {
+		font-size: 1.5rem;
+		margin: 0 auto;
+		color: #66BF9D;
+	}
+}

@@ -219,3 +219,16 @@ function filtrarNumeros(listaCompleta, listaImpares) {
     const setImpares = new Set(listaImpares);
     return listaCompleta.filter(numero => !setImpares.has(numero));
 }
+
+import axios from 'axios';
+
+export const Pokedest = {
+
+  async Pokeboll(texto) {
+    try{
+      return (await axios.get(texto)).data;
+    } catch(er){
+      return null;
+    }
+  }
+}

@@ -1,6 +1,8 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+const http = 'https://pokeapi.co/api/v2/pokemon';
 </script>
 
 <template>
@@ -13,7 +15,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/pokemon">Pokemon</RouterLink>
+        <RouterLink :to="`/pokemon/${encodeURIComponent(http)}`">Pokemon</RouterLink>
       </nav>
     </div>
   </header>

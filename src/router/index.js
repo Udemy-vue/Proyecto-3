@@ -15,14 +15,19 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/pokemon',
+      path: '/pokemon/:http',
+      // path: '/pokemon',
       name: 'pokemon',
+      http: 'http',
       component: () => import('../views/PokemonsView.vue')
     },
     {
-      path: '/pokemons/:poke',
+      path: '/pokemons/:poke/:http',
+      // path: '/pokemons/:poke',
       name: 'poke',
-      component: () => import('../views/PokeView.vue')
+      http: 'http',
+      component: () => import('../views/PokeView.vue'),
+      // props: true
     },
     {
       path: '/:pathMatch(.*)*',

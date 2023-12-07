@@ -1,13 +1,14 @@
 <template>
 	<h1>Pokemones</h1>
-	<ul v-if="data!=null" class="NamePoke" :style="`counter-reset: item ${num};`">
-		<li v-for="poke in pokemons" :key="poke.name">
-			<router-link :to="`/pokemons/${poke.name}/${encodeURIComponent(http)}`"
-				@lectura="lectura">
-        {{ poke.name }}
-      </router-link>
-		</li>
-	</ul>
+	<div v-if="data!=null" class="NamePoke">
+		<ul :style="`counter-reset: item ${num};`">
+			<li v-for="poke in pokemons" :key="poke.name">
+				<router-link :to="`/pokemon/${poke.name}/vista`">
+	        {{ poke.name }}
+	      </router-link>
+			</li>
+		</ul>
+	</div>
 	<h2 v-else>No se encontro ningún Pokemon porque no existen.</h2>
 	
 	<div v-if="data!=null" class="buttonPoke">
@@ -23,7 +24,7 @@
 			:paso="next===null" 
 			:clase="'boton'" />
 	</div>
-</template>
+</template> 
 
 <script>
 	/*import axios from 'axios';*/
@@ -31,6 +32,7 @@
 	import { RouterLink } from 'vue-router';
 	import { Pokedest } from '@/assets/js/bundle.js'
 	import ButtonCounter from '@/components/ButtonCounter.vue';
+	import { useCounterStore } from '@/store/counter.js'
 
 	export default {
 		data() {
@@ -39,7 +41,8 @@
 				data: ref(),
 				next: '',
 				previous: '',
-				http: this.$route.params.http,
+				useCounter: useCounterStore(),
+				// http: useCounter.http,
 				num: 0
 			};
 		},
@@ -49,24 +52,26 @@
 		methods: {
 			async crear(texto) {
 				this.data = (await Pokedest.Pokeboll(texto));
+
 				this.num = texto === "https://pokeapi.co/api/v2/pokemon"
-			  ? 0 : parseInt(texto.match(/offset=(\d+)/)?.[1]) || null;
-				this.http = texto;
+				  ? 0 : parseInt(texto.match(/offset=(\d+)/)?.[1]) || null;
+				// this.useCounter.http = texto
+				this.useCounter.Actualizar(texto);
 				this.next = this.data.next;
 				this.previous = this.data.previous;
 				if(this.data != null) this.pokemons = this.data.results;
 			},
 			lectura(texto) {
-
-				console.log("hola a todos: " + texto);
+				console.log(texto);
 			}
 		},
 		async created() {
-			await this.crear(this.http);
+			await this.crear(this.useCounter.http);
 		},
 		components: {
 			RouterLink,
-			ButtonCounter
+			ButtonCounter,
+			useCounterStore
 		}
 	}
 </script>

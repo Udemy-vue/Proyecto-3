@@ -15,19 +15,25 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/pokemon/:http',
-      // path: '/pokemon',
-      name: 'pokemon',
-      http: 'http',
-      component: () => import('../views/PokemonsView.vue')
+      path: '/contador',
+      name: 'contador',
+      component: () => import('../views/ContadorView.vue')
     },
     {
-      path: '/pokemons/:poke/:http',
-      // path: '/pokemons/:poke',
+      path: '/pokemon',
+      name: 'pokemon',
+      component: () => import('../views/PokemonsView.vue'),
+    },
+    {
+      path: '/pokemon/:poke/:punto',
       name: 'poke',
-      http: 'http',
-      component: () => import('../views/PokeView.vue'),
-      // props: true
+      punto: 'punto',
+      component: () => import('../views/PokeView.vue')
+    },
+    {
+      path: '/favoritos',
+      name: 'favoritos',
+      component: () => import('../views/FavoritosView.vue')
     },
     {
       path: '/:pathMatch(.*)*',

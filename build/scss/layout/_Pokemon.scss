@@ -4,21 +4,31 @@
 		margin: auto;
 	}
 	.NamePoke {
-		margin: 0;
-		margin-left: 1rem;
-		/* counter-reset: item 12; */
-  		list-style: none;
+		display: flex;
+	  flex-direction: column;
+	  /* margin: 0 auto 1rem; */
+	  grid-gap: 1rem;
+		ul {
+			margin: 0;
+			margin-left: 1rem;
+			/* counter-reset: item 12; */
+	  	list-style: none;
 
-  		/* Incrementa el contador para cada elemento de la lista */
-		li {
-			  counter-increment: item;
+	  		/* Incrementa el contador para cada elemento de la lista */
+			li {
+				counter-increment: item;
+			}
+
+			/* Muestra el valor del contador en el contenido del elemento li */
+			li::before {
+				  content: counter(item);
+				  margin-right: 5px;
+				  font-weight: bold;
+			}
 		}
-
-		/* Muestra el valor del contador en el contenido del elemento li */
-		li::before {
-			  content: counter(item);
-			  margin-right: 5px;
-			  font-weight: bold;
+		button {
+			margin: auto;
+  		width: 100%;
 		}
 	}
 }

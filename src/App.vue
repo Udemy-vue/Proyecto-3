@@ -1,8 +1,16 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useCounterStore } from '@/store/counter.js'
 
-const http = 'https://pokeapi.co/api/v2/pokemon';
+const useCounter = useCounterStore();
+
+const http = () => {
+  // console.log("hola mundo");
+  useCounter.Actualizar('https://pokeapi.co/api/v2/pokemon')
+  // useCounter.http = 'https://pokeapi.co/api/v2/pokemon';
+}
+
 </script>
 
 <template>
@@ -15,7 +23,10 @@ const http = 'https://pokeapi.co/api/v2/pokemon';
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink :to="`/pokemon/${encodeURIComponent(http)}`">Pokemon</RouterLink>
+        <RouterLink to="/pokemon" @click="http">Pokemon</RouterLink>
+        <RouterLink to="/favoritos">Favoritos</RouterLink>
+        <RouterLink to="/contador">Contador</RouterLink>
+
       </nav>
     </div>
   </header>

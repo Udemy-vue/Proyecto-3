@@ -230,5 +230,8 @@ export const Pokedest = {
     } catch(er){
       return null;
     }
+  },
+  lectura() {
+    console.log('hola mundo');
   }
 }

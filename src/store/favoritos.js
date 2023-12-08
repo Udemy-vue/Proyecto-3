@@ -28,17 +28,15 @@ export const useFavoritosStore = defineStore('favoritos', {
 			console.log(this.favoritos);
 		},
 		vista(poke, name) {
-			// console.log(poke);
-			// console.log(name);
 			if(this.favoritos.length > poke){
 				return this.favoritos[parseInt(poke)].name != name;
 			}
 			else{
 				return true;
 			}
-			// console.log(this.favoritos[parseInt(poke)].name);
-			// if (this.favoritos.length===0) return true;
-			// else if (this.fa)
+		},
+		atrapado(name) {
+			return this.favoritos.some((favorito) => favorito.name === name);
 		},
 		actualizarLocalStorage() {
       localStorage.setItem('favoritos', JSON.stringify(this.favoritos));

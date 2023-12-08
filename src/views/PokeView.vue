@@ -8,9 +8,9 @@
     <h1 class="nombre">La Pokedest no registra a: {{ $route.params.poke }}</h1>
   </div>
   <button v-on:click="back">Regresar</button>
-  <button v-if="$route.params.punto=='vista'" @click="useFavoritos.add(Pokemon)">Me Gusta</button>
+  <button v-if="$route.params.punto=='vista'" @click="useFavoritos.add(Pokemon)" :disabled="useFavoritos.atrapado($route.params.poke)">Me Gusta</button>
   <button v-else v-on:click="eliminar" :disabled="useFavoritos.vista($route.params.punto, $route.params.poke)">No Me Gusta</button>
-  <!-- <button v-if="$route.params.punto!='vista'" @click="useFavoritos.visualizar">vista</button> -->
+  <!-- <button v-if="$route.params.punto==='vista'" @click="useFavoritos.atrapado($route.params.poke)">vista</button> -->
   
 
 </template>

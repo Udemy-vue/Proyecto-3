@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
 export const useCounterStore = defineStore("counter", {
   // data reactiva
   state: () => ({
     count: 0,
-    http: ''
+    http: ref(localStorage.getItem('http') || '')
   }),
   // methods
   actions: {
@@ -18,22 +19,15 @@ export const useCounterStore = defineStore("counter", {
       console.log(text);
     },
     Actualizar(http) {
-
       this.http = http;
-      localStorage.setItem('http', http);
+      this.actualizarLocalStorage();
     },
-    initialize() {
-      const storedHttp = localStorage.getItem('http');
-      if (storedHttp) {
-        this.http = storedHttp;
-      }
+    actualizarLocalStorage() {
+      localStorage.setItem('http', this.http);
     }
   },
   // computed
   getters: {
     double: (state) => state.count * 2,
-  },
-  onInit() {
-    this.initialize();
   }
 });

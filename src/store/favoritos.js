@@ -16,7 +16,6 @@ export const useFavoritosStore = defineStore('favoritos', {
       }
 		},
 		delete(poke) {
-			// console.log(typeof(poke));
 			this.favoritos.splice(parseInt(poke), 1);
       this.actualizarLocalStorage();
 		},
